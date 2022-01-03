@@ -13,12 +13,20 @@ const balanceInEth: Ref<string> = ref('')
 
 const init = async () => {
   const contractJson = await import('../build/contracts/Election.json')
-  election.value = new web3.eth.Contract(contractJson.abi as any, '0xfb3bdBf46814A962b3248493368Cd3fE931E63D6')
+
+  const networkId: any = await web3.eth.net.getId();
+
+  //@ts-ignore
+  election.value = new web3.eth.Contract(contractJson.abi as any, contractJson.networks[networkId].address)
   accounts.value = await web3.eth.getAccounts();
   trump.value = await election.value.methods.candidates(1).call();
   biden.value = await election.value.methods.candidates(2).call();
 
-  election.value.events.votedEvent(null, (error: any, event: any) => console.log("Voted Event: ", event))
+  election.value.events.votedEvent(null, async (error: any, event: any) => {
+    trump.value = await election.value.methods.candidates(1).call();
+    biden.value = await election.value.methods.candidates(2).call();
+    console.log("Voted Event: ", event)
+  })
   election.value.events.resetEvent(null, async (error: any, event: any) => {
     trump.value = await election.value.methods.candidates(1).call();
     biden.value = await election.value.methods.candidates(2).call();
@@ -36,6 +44,9 @@ const vote = async (candidateId: number) => {
   await election.value.methods.vote(candidateId).send({
     from: account.value,
   })
+
+  // let the account in on the backend server pay for all transations
+  // await fetch(`http://localhost:9000/vote/${candidateId}`)
 
   const candidate = await election.value.methods.candidates(candidateId).call();
 
