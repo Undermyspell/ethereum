@@ -1,0 +1,28 @@
+{
+  "description": "This is cute toast called toast",
+  "image": "https://jmakgdvtdxls.usemoralis.com/2.jpg",
+  "name": "Toast",
+  "attributes": [
+    {
+      "trait_type": "Color",
+      "value": "Brown/White"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Closed"
+    },
+    {
+      "trait_type": "Hungry Level",
+      "value": 4
+    },
+    {
+      "display_type": "boost_percentage",
+      "trait_type": "Order food probability",
+      "value": 50
+    },
+    {
+      "trait_type": "Cuteness",
+      "value": 10
+    }
+  ]
+}

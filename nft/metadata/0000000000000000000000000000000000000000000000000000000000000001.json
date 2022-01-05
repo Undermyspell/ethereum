@@ -1,0 +1,28 @@
+{
+  "description": "This is a white and big cute rabbit called Mümmi",
+  "image": "https://jmakgdvtdxls.usemoralis.com/1.jpg",
+  "name": "White big Mümmi",
+  "attributes": [
+    {
+      "trait_type": "Color",
+      "value": "White"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Closed"
+    },
+    {
+      "trait_type": "Hungry Level",
+      "value": 9
+    },
+    {
+      "display_type": "boost_percentage",
+      "trait_type": "Order food probability",
+      "value": 90
+    },
+    {
+      "trait_type": "Cuteness",
+      "value": 7
+    }
+  ]
+}
